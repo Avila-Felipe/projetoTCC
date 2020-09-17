@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+        <h:head>
+            <title>Manutenção de Raças</title>
+        </h:head>
+
+        <h:body>
+            <h:form id="formTabela">
+                <p:commandButton value="Voltar" 
+                            action="p1Admin.xhtml?faces-redirect=true"/>
+                <p:commandButton value = "Atualizar" 
+                                 actionListener="#{racaControle.atualizaLista()}"
+                                 update="tabela"/>
+                
+                <p:commandButton icon="ui-icon-plus" 
+                                 action="#{racaControle.preparaIncluir()}"/>
+                
+                <p:dataTable id="tabela"
+                             value="#{racaControle.lista}"
+                             var="est">
+                    
+                    <p:column headerText="Nome">
+                        <h:outputLabel value="#{est.raca}"/>
+                    </p:column>
+
+                    <p:column headerText="Opções">
+                        <p:commandButton icon="ui-icon-trash" oncomplete="PF('excluir').show()">
+                            <f:setPropertyActionListener target="#{racaControle.raca}"
+                                                         value="#{est}"/>
+                        </p:commandButton>
+                        
+                        <p:commandButton icon="ui-icon-pencil"
+                                         action="#{racaControle.preparaAlterar()}">
+                            <f:setPropertyActionListener target="#{racaControle.raca}" 
+                                                         value="#{est}"/>
+                        </p:commandButton>        
+                        
+                    </p:column>    
+                </p:dataTable>
+                <p:commandButton icon="ui-icon-plus" action="#{racaControle.preparaIncluir()}"/>
+            </h:form>
+            <p:confirmDialog id="confirmaExclusao" message="Realmente deseja excluir?"
+                                             header="Confirma exclusão?" severity="alert" widgetVar="excluir">
+                <h:form id="formPainelExcluir" enctype="multipart/form=data">
+                    <p:commandButton value="Sim" oncomplete="PF('excluir').hide()"
+                                                 update=":formTabela"
+                                                 actionListener="#{racaControle.excluir}"/>
+                    <p:commandButton value="Não" oncomplete="PF('excluir').hide()"/>
+                </h:form>
+            </p:confirmDialog>
+        </h:body>
+
+</html>

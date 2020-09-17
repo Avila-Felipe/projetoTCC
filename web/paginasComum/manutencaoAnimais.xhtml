@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+      
+    <h:head>
+        <title>Manutencao de Animais</title>
+    </h:head>
+    
+    <h:body>
+        <h:form id="formTabela">
+            <p:commandButton value="Voltar" action="manutencaoFazenda.xhtml?faces-redirect=true"/>
+            <p:commandButton value="Atualizar"
+                             actionListener="#{animalControle.atualizaLista(faz)}"
+                             update="tabela"
+                             />
+            <p:commandButton value="Novo Animal"
+                             action="#{animalControle.preparaIncluir()}"
+                             />
+              <p:commandButton value="Novo Lote" action="loteAnimal.xhtml?faces-redirect=true"/>
+            <h1></h1>
+            <p:dataTable id="tabela" 
+                         value="#{animalControle.lista}"
+                         var="ani">
+                
+                <p:column headerText="Identificação do Animal">
+                    <h:outputLabel value="#{ani.identificacao}"/>
+                </p:column>
+                <p:column headerText="Data Nascimento">
+                    <h:outputLabel value="#{ani.dataNasc}">
+                        <f:convertDateTime pattern="dd.MM.  yyyy"/>
+                    </h:outputLabel>
+                </p:column>
+                <p:column headerText="Sexo">
+                    <h:outputLabel value="#{ani.sexo}"/>
+                </p:column>
+                <p:column headerText="Cor">
+                    <h:outputLabel value="#{ani.cor}"/>
+                </p:column>
+                <p:column headerText="Raca">
+                    <h:outputLabel value="#{ani.raca.raca}"/>
+                    </p:column>
+                <p:column headerText="Fazenda">
+                    <h:outputLabel value="#{ani.fazenda.nomeFazenda}"/>
+                </p:column>
+                
+                <p:column headerText="Opções" >
+
+                    <p:commandButton oncomplete="PF('cd').show()" icon="ui-icon-trash">
+                        <f:setPropertyActionListener target="#{animalControle.animal}" value="#{ani}"/>
+                    </p:commandButton>
+
+                    <p:commandButton icon="ui-icon-pencil"
+                                     action="#{animalControle.preparaAlterar()}"
+                                     >
+                        <f:setPropertyActionListener target="#{animalControle.animal}" value="#{ani}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h1></h1>
+        <p:commandButton value="Novo"
+                         action="#{animalControle.preparaIncluir()}"
+                         />
+
+        <p:confirmDialog closeOnEscape="true" showEffect="fade" hideEffect="fade" message="Você realmente deseja deletar este animal?" 
+                         header="Você tem certeza desta operação?" severity="alert" widgetVar="cd">
+            <h:form id="formPainelCD" enctype="multipart/form-data">                    
+                <p:commandButton value="Sim" actionListener="#{animalControle.excluir()}"
+                                 update=":formTabela" onclick="PF('cd').hide()"/>
+                <p:commandButton value="Não" onclick="PF('cd').hide()"/>
+            </h:form>                    
+        </p:confirmDialog>
+    </h:body>
+</html>

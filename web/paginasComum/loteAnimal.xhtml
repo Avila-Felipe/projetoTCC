@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+      
+    <h:head>
+        <title>Cadastro de Animais</title>
+    </h:head>
+    
+    <h:body>
+       <h:form id="freeTabela">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Quantidade de Animais:"/>
+                <p:inputText value="#{animalControle.animal.quantidade}"/>
+                
+                <p:outputLabel value="Identificação do animal"/>
+                <p:inputText value="#{animalControle.animal.identificacao}"/>
+                
+                <p:outputLabel value="Data Nascimento"/>
+                <p:calendar value="#{animalControle.animal.dataNasc}" locale="tr" navigator="true"
+showButtonPanel="true" pattern="dd.MM.yyyy"/>
+                    
+                <p:outputLabel value="Raça"/>
+                <p:selectOneMenu value="#{animalControle.idRaca}">
+                    <f:selectItem itemLabel="Selecione uma raça" itemValue="0"/>
+                    <f:selectItems value="#{racaControle.lista}"
+                                       var="r"
+                                       itemValue="#{r.idRaca}"
+                                       itemLabel="#{r.raca}"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel value="Sexo"/>
+                <p:selectOneMenu value="#{animalControle.animal.sexo}">
+                        <f:selectItem itemLabel="Selecione um sexo"/>
+                        <f:selectItem itemLabel="Macho" itemValue="Macho"/>
+                        <f:selectItem itemLabel="Fêmea" itemValue="Fêmea"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel value="Cor dos animais"/>
+                <p:inputText value="#{animalControle.animal.cor}"/>
+                
+                <p:outputLabel value="Data de Entrada"/>
+                <p:calendar value="#{animalControle.animal.dataEntrada}" locale="tr" navigator="true"
+showButtonPanel="true" pattern="dd.MM.yyyy"/>
+
+                <p:outputLabel value="Data de Saida"/>
+                <p:calendar value="#{animalControle.animal.dataSaida}" locale="tr" navigator="true"
+showButtonPanel="true" pattern="dd.MM.yyyy"/>
+                
+                <p:outputLabel value="Status do Animal"/>
+                <p:inputText value="#{animalControle.animal.status}"/>
+                
+                <p:outputLabel value="Descrição do Animais"/>
+                <p:inputText value="#{animalControle.animal.descricao}"/>
+                
+            </p:panelGrid>
+           <p:commandButton value="Salvar" icon="ui-icon-check"
+                            action="#{animalControle.salvarLote()}"/>
+        </h:form>
+    </h:body>
+</html>

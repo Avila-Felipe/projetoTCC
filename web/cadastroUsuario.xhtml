@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>Cadastre-se na Bullcare</title>
+
+        <!-- Font Icon -->
+        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css"/>
+
+        <!-- Main css -->
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+
+        <div class="main">
+
+            <section class="signup">
+                <!-- <img src="images/teste2.jpg" alt=""> -->
+                <div class="container">
+                    <div class="signup-content">
+                        <h:form id="signup-form" class="signup-form">
+                            <h2 class="form-title">Cadastre-se</h2>
+                            <div class="form-group">
+                                <h:inputText class="form-input" id="nome" value="#{usuarioControle.usuario.nome}">
+                                    <f:passThroughAttribute name="placeholder" value="Nome" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText class="form-input" id="sobrenome" value="#{usuarioControle.usuario.sobrenome}">
+                                    <f:passThroughAttribute name="placeholder" value="Sobrenome" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText class="form-input" id="cpf" value="#{usuarioControle.usuario.cpf}">
+                                    <f:passThroughAttribute name="placeholder" value="CPF" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText class="form-input" id="endereco" value="#{usuarioControle.usuario.endereco}">
+                                    <f:passThroughAttribute name="placeholder" value="Endereço" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText class="form-input" id="telefone" value="#{usuarioControle.usuario.telefone}">
+                                    <f:passThroughAttribute name="placeholder" value="Telefone" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText class="form-input" id="email" value="#{usuarioControle.usuario.email}">
+                                    <f:passThroughAttribute name="placeholder" value="E-mail" />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <h:inputSecret class="form-input" id="senha" value="#{usuarioControle.usuario.senha}">
+                                    <f:passThroughAttribute name="placeholder" value="Senha" />
+                                </h:inputSecret>
+                                
+                            </div>
+                    
+                            <div class="form-group">
+                                <h:commandButton class="form-submit" value="Cadastrar" action="#{usuarioControle.salvar()}"/>
+                            </div>
+
+                        </h:form>
+                        <p class="loginhere">
+                            Já tem uma conta? <a href="#login.xhtml" class="loginhere-link" >Clique aqui! </a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- JS -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="js/mainCadastro.js"></script>
+    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+
